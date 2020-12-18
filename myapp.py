@@ -40,7 +40,6 @@ from tensorflow.keras.layers import *
 from tensorflow.keras import backend as K
 from tensorflow import keras 
 from tensorflow.keras.optimizers import Adam
-from keras.models import load_model
 
 
 
