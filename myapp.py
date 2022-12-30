@@ -19,7 +19,7 @@ from pickle import load
 import math
 import dash_daq as daq
 
-from sklearn.metrics.classification import accuracy_score, log_loss
+from sklearn.metrics import accuracy_score, log_loss
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report 
 from sklearn.metrics import mean_squared_error, r2_score 
