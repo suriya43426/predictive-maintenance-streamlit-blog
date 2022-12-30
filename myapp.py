@@ -47,7 +47,7 @@ from sklearn.preprocessing import MinMaxScaler
 image = Image.open('Turbofan.jpg')
 st.set_page_config(
 	page_title="RUL",
-    page_icon=":shark:",
+    page_icon="https://seeklogo.com/images/M/mitrphol-logo-26F9A6C8DE-seeklogo.com.png",
     layout="centered",
     initial_sidebar_state="auto")
 
