@@ -44,7 +44,7 @@ from tensorflow.keras.optimizers import Adam
 
 
 from sklearn.preprocessing import MinMaxScaler
-image = Image.open('Turbofan.jpg')
+image = Image.open('https://static.workventure.com/uploads/images/companies/gallery/original/image-%E0%B8%AA%E0%B8%A1%E0%B8%B1%E0%B8%84%E0%B8%A3%E0%B8%87%E0%B8%B2%E0%B8%99-%E0%B8%9A%E0%B8%A3%E0%B8%B4%E0%B8%A9%E0%B8%B1%E0%B8%97-%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%95%E0%B8%B2%E0%B8%A5%E0%B8%A1%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%9C%E0%B8%A5-%E0%B8%88%E0%B8%B3%E0%B8%81%E0%B8%B1%E0%B8%94-20170609143021.jpg')
 st.set_page_config(
 	page_title="RUL",
     page_icon=":shark:",
@@ -90,7 +90,7 @@ def RUL(df):
     return df    
 def load_homepage() -> None:
 	st.title('Estimate Remaining Useful Life of Shredder')
-	st.image(image, caption='Photographer: Luke Sharrett/Bloomberg', use_column_width=True) 
+	st.image(image, caption='MitrPhol Sugar Factory', use_column_width=True)
 	st.write("""
 		One of the main challenges in the aviation industry is to reduce maintenance costs and reduce downtime of machines by maintaining or improving safety standard. A large per cent of these costly delays are a result of unplanned maintenance such as when an aircraft has an abnormal behaviour on the previous flight, creating an operational disruption and even requiring an aircraft change.
 
