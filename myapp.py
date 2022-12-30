@@ -1240,7 +1240,7 @@ def model_predi():
 
 # create a button in the side bar that will move to the next page/radio button choice
 st.sidebar.title("Predictive Maintenance")
-st.sidebar.image(width=300, image="https://ua.all.biz/img/ua/catalog/1788233.png")
+st.sidebar.image(image="https://pbs.twimg.com/media/DTjiEECU8AAIuTF.png")
 app_mode = st.sidebar.selectbox("Go to", ["Home","Data Exploration","Feature Engineering","Model Building","Model prediction"]) 
 if app_mode == 'Home':
 	load_homepage()
