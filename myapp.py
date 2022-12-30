@@ -89,7 +89,7 @@ def RUL(df):
     df.drop('max_No_cycles', inplace=True, axis=1)
     return df    
 def load_homepage() -> None:
-	st.title('Estimate Remaining Useful Life of Turbofan engines') 
+	st.title('Estimate Remaining Useful Life of Shredder')
 	st.image(image, caption='Photographer: Luke Sharrett/Bloomberg', use_column_width=True) 
 	st.write("""
 		One of the main challenges in the aviation industry is to reduce maintenance costs and reduce downtime of machines by maintaining or improving safety standard. A large per cent of these costly delays are a result of unplanned maintenance such as when an aircraft has an abnormal behaviour on the previous flight, creating an operational disruption and even requiring an aircraft change.
@@ -1239,8 +1239,9 @@ def model_predi():
 
 
 # create a button in the side bar that will move to the next page/radio button choice
-st.sidebar.title("Predictive Maintenance")
 st.sidebar.image(image="https://pbs.twimg.com/media/DTjiEECU8AAIuTF.png")
+st.sidebar.title("Predictive Maintenance")
+
 app_mode = st.sidebar.selectbox("Go to", ["Home","Data Exploration","Feature Engineering","Model Building","Model prediction"]) 
 if app_mode == 'Home':
 	load_homepage()
