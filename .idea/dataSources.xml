@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="@mitrphol-redshift-prod.cgffftialzgr.ap-southeast-1.redshift.amazonaws.com" uuid="eb9e388b-c3f8-446b-a395-210443d66f0d">
+      <driver-ref>redshift</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.amazon.redshift.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:redshift://mitrphol-redshift-prod.cgffftialzgr.ap-southeast-1.redshift.amazonaws.com:5439/mitrphol_prod</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="findb_prd" uuid="eec5a396-3012-4adc-a72a-66f310da9086">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://10.25.69.142;database=findb_prd</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
