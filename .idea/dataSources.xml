@@ -15,5 +15,12 @@
       <jdbc-url>jdbc:sqlserver://10.25.69.142;database=findb_prd</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="sugarcanedatawarehouse" uuid="a46d0f88-ee20-4c1b-a90b-ea8133944825">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://10.25.69.156;database=sugarcanedatawarehouse</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
