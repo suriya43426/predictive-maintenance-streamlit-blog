@@ -5,7 +5,7 @@ pandas
 matplotlib
 Keras
 requests
-streamlit
+streamlit==1.17.0
 dash_daq
 Pillow
 scikit_learn
