@@ -1196,6 +1196,7 @@ def model_predi():
 
 
 	scal = scaling(df,sc_url,engine_id)
+	scal.clip = False
 	model = load_ML_model(model_url)
 	test_point = scal.loc[[time_of_cycle],:]
 	yhat = model.predict_proba(test_point)
