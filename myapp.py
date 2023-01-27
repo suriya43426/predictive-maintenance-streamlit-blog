@@ -38,7 +38,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 
 from sklearn.preprocessing import MinMaxScaler
-image = Image.open('Turbofan.jpg')
+image = Image.open('C-MAPSS.jpg')
 st.set_page_config(
 	page_title="AI/ML-Projects",
     page_icon="https://seeklogo.com/images/M/mitrphol-logo-26F9A6C8DE-seeklogo.com.png",
