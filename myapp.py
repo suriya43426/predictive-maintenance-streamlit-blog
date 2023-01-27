@@ -40,7 +40,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import MinMaxScaler
 image = Image.open('Turbofan.jpg')
 st.set_page_config(
-	page_title="RUL",
+	page_title="AI/ML-Projects",
     page_icon="https://seeklogo.com/images/M/mitrphol-logo-26F9A6C8DE-seeklogo.com.png",
     layout="centered",
     initial_sidebar_state="auto")
@@ -86,7 +86,7 @@ def load_homepage() -> None:
 	st.title('Estimate Remaining Useful Life of Shredder')
 	st.image(image="https://www.realsoluplus.com/wp-content/uploads/2020/03/pj001-1.jpg", caption='MitrPhol Sugar Factory', use_column_width=True)
 	st.write("""
-		One of the main challenges in the aviation industry is to reduce maintenance costs and reduce downtime of machines by maintaining or improving safety standard. A large per cent of these costly delays are a result of unplanned maintenance such as when an aircraft has an abnormal behaviour on the previous flight, creating an operational disruption and even requiring an aircraft change.
+		One of the main challenges in the aviation industry is to reduce maintenance costs and reduce downtime of machines by maintaining or improving safety standard. A large per cent of these costly delays are a result of unplanned maintenance such as when an aircraft has an abnormal.
 
 		Since you don't know when failure will occur, you have to be conservative in your planning, especially if you're operating safety-critical equipment like engines. But by scheduling maintenance very early, you're wasting machine life or spare part life that is still usable, and this adds to costs to the owner.
 
@@ -95,17 +95,17 @@ def load_homepage() -> None:
 		In order to develop an algorithm that predicts the breakdown of a piece of equipment within a given time window (typically some number of days), we require enough historical data that allows us to capture information about events leading to failure.""")
 	st.subheader('About Data set:')
 	st.write("""
-		In this post, we are using the C-MAPSS dataset, which is engine degradation simulation was carried out at NASA by using C-MAPSS simulation software. C-MAPSS has created four different data sets simulated under different combinations of operational conditions and fault modes.
+		In this post, we are using the osi-softpi realtime dataset, which is shredder degradation simulation was carried out. C-MAPSS has created four different data sets simulated under different combinations of operational conditions and fault modes.
 		
-		Data sets are consist of three operational settings and 21 sensor measurements (temperature, pressure, fan speed, etc.) for several engines and for every cycle of their lifetime. 
+		Data sets are consist of three operational settings and 21 sensor measurements (temperature, pressure, fan speed, etc.) for several shredder and for every cycle of their lifetime.
 
 		*The engine is operating normally at the start of each time series and develops a fault at some point during the series.**In the training set, the fault grows in magnitude until system failure. In the test set, the time series ends sometime prior to system failure**.*""")
 	st.subheader("Problem statement:")
 	st.write("The goal of predictive maintenance is to predict at the time t, using the data up to that time, whether the equipment will fail in the near future.")
 	st.write("This problem is can be formulated in two ways:")
 	st.write("**Classification:** we are aims to predict the probability that the equipment will fail within a pre-specified time window.")
-	st.write("**Regression:** A regression-based approach to which aims to estimate the remaining time to the end of the equipment's useful life of an engine.")
-	st.write("In this blog, we'll focus on the second dataset (FD002) in which all engines develop some fault with six operating conditions.")
+	st.write("**Regression:** A regression-based approach to which aims to estimate the remaining time to the end of the equipment's useful life of the shredder.")
+	st.write("In this blog, we'll focus on the second dataset  in which all engines develop some fault with six operating conditions.")
 def EDA():
 	st.title('Data Exploration')
 	if st.checkbox("Show Train dataset"):
@@ -171,7 +171,7 @@ To calculate RUL in our test data set, we did the same thing as training data by
 		axes[1].plot(y_train_clip)
 		axes[1].set_title('Engine RUL after the Clipping')
 		st.pyplot(fig)
-	st.header('**Exploratory Data Analysis:**')
+	st.header('**Exploratory Data Analysis:**')
 	st.bar_chart(train.Engine_No.value_counts(),use_container_width=True)
 	st.write("- Engines have different life durations.The average working time in train data is 206 cycles with a minimum of 128 and a maximum of 378.")
 	st.write("- 96% of engines are within 300 life cycle and 4% only engines lived above 300 life cycles, this engines we consider as an extreme case.")
