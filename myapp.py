@@ -49,9 +49,9 @@ Data_url_train = 'https://raw.githubusercontent.com/Ali-Alhamaly/Turbofan_useful
 Data_url_test  = 'https://raw.githubusercontent.com/Ali-Alhamaly/Turbofan_usefull_life_prediction/master/Data/Simulation_Data/test_FD002.txt'
 @st.cache
 def load_data(URL):
-	index_columns_names =  ["Engine_No","Time_in_cycles"]
-	operational_settings_columns_names = ['Altitude','Mach_number','TRA']
-	sensor_measure_columns_names = ['T2','T24','T30','T50', 'P2','P15','P30', 'Nf','Nc','epr','Ps30','phi','NRf','NRc','BPR','fuel_air_ratio','htBleed','Nf_dmd','PCNfR_dmd','W31','W32']
+	index_columns_names = ["Engine_No","Time_in_cycles"]
+	operational_settings_columns_names = ['Altitude', 'Mach_number', 'TRA']
+	sensor_measure_columns_names = ['T2', 'T24', 'T30','T50', 'P2','P15','P30', 'Nf','Nc','epr','Ps30','phi','NRf','NRc','BPR','fuel_air_ratio','htBleed','Nf_dmd','PCNfR_dmd','W31','W32']
 	input_file_column_names = index_columns_names + operational_settings_columns_names + sensor_measure_columns_names
 	df= pd.read_csv(URL,delim_whitespace=True,names=input_file_column_names,error_bad_lines=False)
 	# convert killo feet to meters
@@ -1142,7 +1142,8 @@ def model_predi():
 	@st.cache
 	def scaling(df,path_sc,machine_id):
 		mfile = BytesIO(requests.get(path_sc).content)
-		scaler =   pickle.load(mfile)
+		scaler =  pickle.load(mfile)
+		# scal.clip = False
 		cols = df.columns.difference(['Engine_No'])
 		norm_train_df = pd.DataFrame(scaler.transform(df[cols]), columns=cols, index=df.index)
 		join_df = df[df.columns.difference(cols)].join(norm_train_df)
@@ -1196,7 +1197,6 @@ def model_predi():
 
 
 	scal = scaling(df,sc_url,engine_id)
-	scal.clip = False
 	model = load_ML_model(model_url)
 	test_point = scal.loc[[time_of_cycle],:]
 	yhat = model.predict_proba(test_point)
