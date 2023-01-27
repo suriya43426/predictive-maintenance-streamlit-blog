@@ -10,17 +10,12 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-from matplotlib import cm
 import seaborn as sns
 import pickle
 import time
 from io import BytesIO
 import requests
-import os
 from math import log, exp, sqrt
-from pickle import load
 import math
 
 from sklearn.metrics import accuracy_score, log_loss
@@ -120,18 +115,21 @@ def load_homepage() -> None:
         "In this blog, we'll focus on the second dataset  in which all engines develop some fault with six operating conditions.")
 
 def Dashboard():
-    df2 = pd.read_csv("/Users/suriyaohmchayatummagoone/PycharmProjects/datascience_marketing/predictive-maintenance-streamlit-blog/raw_aws/predective_dataset.csv")
+    df_tag = pd.read_csv('raw_aws/raw_data_predictive.csv')
+    df_raw_data = pd.read_csv('raw_aws/predective_dataset.csv')
+    df_predict = pd.read_csv("raw_aws/output_data_predictive.csv")
+
     df = pd.read_csv("dataset_dashboard_2.csv")
     st.title("Real-Time Predictive Maintenance")
 
     # top-level filters
-    job_filter = st.selectbox("Select the Equipment", pd.unique(df['machine']))
+    machine_filter = st.selectbox("Select the Equipment", pd.unique(df['machine']))
 
     # creating a single-element container.
     placeholder = st.empty()
 
     # dataframe filter
-    df = df[df['machine'] == job_filter]
+    df = df[df['machine'] == machine_filter]
 
     # near real-time / live feed simulation
     for seconds in range(200):
@@ -167,7 +165,15 @@ def Dashboard():
                 fig2 = px.histogram(data_frame=df, x='machine')
                 st.write(fig2)
             st.markdown("### Detailed of sensors")
-            st.dataframe(df2)
+
+            fig_col3, fig_col4, fig_col5 = st.columns(3)
+            with fig_col3:
+                st.dataframe(df_raw_data)
+            with fig_col4:
+                st.dataframe(df_tag)
+            with fig_col5:
+                st.dataframe(df_predict)
+
 
 
             time.sleep(1)
@@ -1417,7 +1423,10 @@ def model_predi():
     st.sidebar.write("Select any engine from", df.Engine_No.unique()[0], "to", df.Engine_No.unique()[-1])
     time_of_cycle = st.sidebar.select_slider("At give some point of time engine fail or not",
                                              list(range(1, df[df['Engine_No'] == engine_id].shape[0])))
-    st.sidebar.write("you are completed", time_of_cycle, "and you are predicting what happened in next 30 cycle")
+
+
+    # st.sidebar.write("you are completed", time_of_cycle, "and you are predicting what happened in next 30 cycle")
+    st.sidebar.write("การเลือก ทำนายตาม TonsCane", time_of_cycle, "and you are predicting what happened in next 30 cycle")
 
     scal = scaling(df, sc_url, engine_id)
     model = load_ML_model(model_url)
