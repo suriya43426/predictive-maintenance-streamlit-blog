@@ -4,6 +4,9 @@ from tensorflow.python.keras.models import *
 from tensorflow.python.keras.layers import *
 from tensorflow.python.keras.optimizers import *
 
+import pandas as pd
+import redshift_connector
+
 st.set_option('deprecation.showPyplotGlobalUse', False)
 from PIL import Image
 import numpy as np
@@ -72,6 +75,34 @@ def load_data(URL):
     df['Ps30'] = df['Ps30'].apply(lambda x: x * 0.0689476)
     return df
 
+def load_data2(URL2):
+    index_columns_names = ["Engine_No", "Time_in_cycles"]
+    operational_settings_columns_names = ['Altitude', 'Mach_number', 'TRA']
+    sensor_measure_columns_names = ['T2', 'T24', 'T30', 'T50', 'P2', 'P15', 'P30', 'Nf', 'Nc', 'epr', 'Ps30', 'phi',
+                                    'NRf', 'NRc', 'BPR', 'fuel_air_ratio', 'htBleed', 'Nf_dmd', 'PCNfR_dmd', 'W31',
+                                    'W32']
+    input_file_column_names = index_columns_names + operational_settings_columns_names + sensor_measure_columns_names
+    df2 = pd.read_csv(URL2, delim_whitespace=True, names=input_file_column_names, error_bad_lines=False)
+    # convert killo feet to meters
+    df2['Altitude'] = df2['Altitude'].apply(lambda x: x * 1000 * 0.3048)
+    # convert temperature Rankine to Kelvin
+    df2['T2'] = df2['Q0Q1-DCS-ML-105FT001_ShredderFlowLubeOilNDE'].apply(lambda x: x * 0.555556)
+    # convert temperature Rankine to Kelvin
+    df2['T24'] = df2['T24'].apply(lambda x: x * 0.555556)
+    # convert temperature Rankine to Kelvin
+    df2['T30'] = df2['T30'].apply(lambda x: x * 0.555556)
+    # convert temperature Rankine to Kelvin
+    df2['T50'] = df2['T50'].apply(lambda x: x * 0.555556)
+    # convert pressure psia to bar
+    df2['P2'] = df2['P2'].apply(lambda x: x * 0.0689476)
+    # convert pressure psia to bar
+    df2['P15'] = df2['P15'].apply(lambda x: x * 0.0689476)
+    # convert pressurepsia to bar
+    df2['P30'] = df2['P30'].apply(lambda x: x * 0.0689476)
+    # convert pressure to bar
+    df2['Ps30'] = df2['Ps30'].apply(lambda x: x * 0.0689476)
+    return df2
+
 
 @st.cache
 def RUL(df):
@@ -115,8 +146,12 @@ def load_homepage() -> None:
         "In this blog, we'll focus on the second dataset  in which all engines develop some fault with six operating conditions.")
 
 def Dashboard():
-    df_tag = pd.read_csv('raw_aws/raw_data_predictive.csv')
-    df_raw_data = pd.read_csv('raw_aws/predective_dataset.csv')
+    df_tag = pd.read_csv('raw_aws/tag_pi.csv')
+
+    Predictive
+    Dashboard
+
+    df_raw_data = pd.read_csv('raw_aws/raw_dataset.csv')
     df_predict = pd.read_csv("raw_aws/output_data_predictive.csv")
 
     df = pd.read_csv("dataset_dashboard_2.csv")
