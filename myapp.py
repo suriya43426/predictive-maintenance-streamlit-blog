@@ -5,7 +5,7 @@ from tensorflow.python.keras.layers import *
 from tensorflow.python.keras.optimizers import *
 
 import pandas as pd
-import redshift_connector
+# import redshift_connector
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 from PIL import Image
